@@ -13,24 +13,33 @@ HPps_KSp = x(9);
 % KD for interaction between ABL SH3 domain and the polyproline sequence (k1 and km1)
 % Source : Crystal structure of the abl-SH3 domain complexed with a designed high-affinity peptide ligand: implications for SH3-ligand interactions
 
+% No interaction
+% Kd = 1000;
+
 % 3BP1 - 34 uM
+% Kd = 34;
+
 % 3BP2 - 5 uM
+% Kd = 5
+
 % p41 - 1.5 uM
+% Kd = 1.5;
+
 % p40 - 0.4 uM
-SH3_Kd = 1.5;
+% Kd = 0.4;
+Kd = getGlobalKd;
 
 % kcat and Km for EGFR kinase on Y1197
 % Source: Structures of lung cancer-derived EGFR mutants and inhibitor complexes: mechanism of activation and insights into differential inhibitor sensitivity
 % kcat = 0.023 s^-1
 % Km = 949 uM
-Km = 949;
+Km = getGlobalKm;
 
 % Big assumption is that we are setting the off rate constant so that we can use the information we have to get similar kinetics
-% Kd = km1/k1 = km2/k2
 % Assumption: km1 = km2 = 1
-kcat = 0.023*60; 
+kcat = getGlobalkcat; 
 km2 = 1*60;
-k2 = km2/SH3_Kd;
+k2 = km2/Kd;
 km1 = 1*60;
 k1 = (km1+kcat)/Km;
 % just guestimating keff for now
